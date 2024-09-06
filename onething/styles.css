@@ -222,6 +222,7 @@ nav a {
     border: 2px solid #B2AC88;
     color: #00003c;
     font-size: 18px;
+    z-index: 3;
     border-radius: 15px;
 }
   
@@ -332,7 +333,6 @@ nav a {
         background-color: lavender;
         border: 2px solid #B2AC88;
         color: #00003c;
-        z-index: 2;
         border-radius: 15px;
       }
     
