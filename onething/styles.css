@@ -19,6 +19,7 @@ header {
     position: sticky;
     top: 0;
     width: 100%;
+    z-index: 2;
     height: auto;
 }
 
@@ -346,6 +347,7 @@ nav a {
 body {
     background-color: #00003c;
     height: max-content;
+    z-index: 1;
     /* Other global styles */
 }
 
@@ -370,6 +372,55 @@ body {
     border: 2px solid #7DF9FF;
     border-radius: 10px;
     width: auto;
+    height: auto;
+    overflow-x: hidden;
+    padding: 20px;
+    .container{
+        height: auto;
+        width: 100%;
+      }
+      .swiper {
+          width: 100% ;
+          height: auto;
+        }
+      
+        .swiper-slide {
+          background-position: center;
+          background-size: cover;
+          width: 600px;
+          height: auto;
+        }
+      
+        .swiper-slide img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          border: #7DF9FF solid 2px;
+          border-radius: 15px;
+        }
+      
+      
+        @media (max-width: 1200px) {
+          .swiper-slide {
+            width: 700px;
+            height: 400px;
+          }
+        }
+      
+      
+        @media (max-width: 768px) {
+          .swiper-slide {
+            width: 400px;
+            height: 250px;
+          }
+        }
+      
+        @media (max-width: 500px) {
+          .swiper-slide {
+            width: 300px;
+            height: 200px;
+          }
+        }
     /* Other styles for the events section */
 }
 
