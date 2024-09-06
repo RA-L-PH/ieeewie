@@ -1,3 +1,7 @@
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+  });
+
 function toggleMenu() {
     var hamburger = document.querySelector('.hamburger');
     var menu = document.querySelector('nav ul'); // Add a closing parenthesis here
