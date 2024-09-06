@@ -338,6 +338,7 @@ nav a {
       .event-letter.show {
         display: block;
         transform: translate(-50%, -50%) scale(1);
+        z-index: 2;
       }
 }
 
