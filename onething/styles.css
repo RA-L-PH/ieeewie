@@ -22,6 +22,7 @@ header {
     top: 0;
     width: 100%;
     z-index: 2;
+    transition: ease 0.8ms;
     height: auto;
 }
 
@@ -37,6 +38,11 @@ header .imgwie {
     width: 90px;
     float: right;
     /* Your logo image styling */
+}
+
+.transparent-header {
+  background-color: transparent;
+  transition: ease 0.8ms;
 }
 
 /* Navbar styles */

@@ -2,6 +2,15 @@ document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
   });
 
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    if (window.scrollY > 0) {
+        header.classList.add('transparent-header');
+    } else {
+        header.classList.remove('transparent-header');
+    }
+});
+
 function toggleMenu() {
     var hamburger = document.querySelector('.hamburger');
     var menu = document.querySelector('nav ul'); // Add a closing parenthesis here
