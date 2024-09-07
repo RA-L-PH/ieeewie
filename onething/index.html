@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Awesome Website</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
@@ -21,7 +21,7 @@
             </div>
             <div class="links">
                 <ul>
-                    <li><a onclick="closemenu()" href="#about">About</a></li>
+                    <li><a onclick="closemenu()" href="#about-section">About</a></li>
                     <li><a onclick="closemenu()" href="#events-section">Events</a></li>
                     <li><a onclick="closemenu()" href="#team-section">Team</a></li>
                     <li><a onclick="closemenu(); openEventLetter()" href="#event-letter">Event-Letter</a></li>
@@ -51,7 +51,20 @@
     <div class="about-section" id="about-section">
         <!-- Your about section content -->
          <H1>ABOUT</H1>
-    </div>
+         <div class="under-about">
+            <div class="ieee"><h1>IEEE</h1><br>
+                <p>IEEE-SFIT student branch aims to promote technical learning and interpersonal competence, fostering interest in new technologies and innovative thinking. It functions at SFIT, a professional association dedicated to advancing technological innovation and excellence.</p>
+            </div>
+            <div class="image">
+                <img class="img1" src="assets/ieeelogo.png">
+                <img class="img2" src="assets/logo.png">
+            </div>
+            <div class="wie">
+                <h1>WIE</h1><br>
+                <p>IEEE Women in Engineering (WIE) is a global network of IEEE members and volunteers dedicated to promoting women engineers and scientists and inspiring girls around the world to follow their academic interests in a career in engineering and science.</p>
+            </div>
+        </div>
+</div>
 
     <div class="events-section" id="events-section">
         <!-- Your events section content -->
@@ -83,7 +96,50 @@
     </div>
 
     <footer>
-        © 2024 IEEE WIE Website
+        <div class="glid">
+            <h2>Contact</h2>
+            <div class="blox">
+                <div class="flexc">
+                    <span><a href="#"><i class="fa-solid fa-phone"></i>: IEEE Chairperson</a></span>
+                </div>
+                <div class="flexc">
+                    <span><a href="#"><i class="fa-solid fa-phone"></i>: WIE Chairperson</a></span>
+                </div>
+                <div class="flexc">
+                    <span><a href="#"><i class="fa-solid fa-at"></i>: ieeesfit@gmail.com</a></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="glid">
+            <h2>Address</h2>
+            <div class="blox">
+                <div class="flexc">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d521.4649289393635!2d72.85544469322892!3d19.24348012198658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b13affffffff%3A0xfd071f1d3a7844ef!2sSt.%20Francis%20Institute%20of%20Technology!5e1!3m2!1sen!2sin!4v1725695978399!5m2!1sen!2sin" width="auto" height="auto" style="border:4px lavendar solid;border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <p>&copy; IEEE WIE Official 2024-2025 Website</p>
+            </div>
+        </div>
+        
+        <div class="glid">
+            <h2>Social-Links</h2>
+            <div class="blox">
+                <div class="flexc">
+                    <div class="flexr">
+                        <a href="https://www.facebook.com/IEEESFIT/"><i class="fa-brands fa-facebook-f big"></i></a>
+                        <a href="https://x.com/ieee_sfit?lang=en"><i class="fa-brands fa-x-twitter big"></i></a>
+                        <a href="https://www.instagram.com/ieeesfit?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fa-brands fa-instagram big"></i></a>
+                    </div>
+                    <div class="flexr">
+                        <a href="https://www.linkedin.com/company/ieeesfit/mycompany/verification/"><i class="fa-brands fa-linkedin-in big"></i></a>
+                        <a href="https://github.com/IEEESFIT1"><i class="fa-brands fa-github big"></i></a>
+                    </div>
+                    <div class="flexr"></div>
+                        <a href="https://www.youtube.com/@IEEESFIT"><i class="fa-brands fa-youtube big"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
