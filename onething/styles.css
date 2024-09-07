@@ -354,6 +354,9 @@ body {
     justify-content: center;
     justify-items: center;
     z-index: 2;
+    font-family: "Grechen Fuemen", cursive;
+    font-weight: 400;
+    font-style: normal;
     /* Other global styles */
 }
 
@@ -527,6 +530,9 @@ body {
             margin: 10px;
             padding: 2px;
             font-size: 15px;
+            font-family: "Grechen Fuemen", cursive;
+            font-weight: 400;
+            font-style: normal;
             border-radius: 10px;
             border: black 2px solid;
             color: #006D5B;
