@@ -40,11 +40,6 @@ header .imgwie {
     /* Your logo image styling */
 }
 
-.transparent-header {
-  background-color: transparent;
-  transition: ease 0.8ms;
-}
-
 /* Navbar styles */
 nav {
     padding: 10px;
