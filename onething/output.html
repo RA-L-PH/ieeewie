@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" id="content">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Retrieve the rawLink from localStorage
+      const rawLink = localStorage.getItem('rawLink');
+
+      if (rawLink) {
+        // Fetch the content from the raw HTML link
+        fetch(rawLink)
+          .then(response => response.text())
+          .then(data => {
+            // Insert the fetched content into the div
+            document.getElementById('content').innerHTML = data;
+          })
+          .catch(error => {
+            console.error('Error fetching the content:', error);
+            document.getElementById('content').innerHTML = '<p>Failed to load content.</p>';
+          });
+      } else {
+        document.getElementById('content').innerHTML = '<p>No content to display.</p>';
+      }
+    });
+  </script>
+</head>
+<body>
+  
+
+</body>
+</html>

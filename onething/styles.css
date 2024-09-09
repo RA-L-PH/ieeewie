@@ -5,7 +5,18 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Grechen Fuemen", cursive;
+    font-weight: 400;
+    font-style: normal;
 }
+
+/* Add this CSS to your styles.css file */
+section {
+  padding-top: 100px; /* Adjust this value based on the height of your header */
+  margin-top: -100px; /* Adjust this value based on the height of your header */
+}
+
+
 
 /* Header styles */
 header {
@@ -22,29 +33,35 @@ header {
     top: 0;
     width: 100%;
     z-index: 2;
-    transition: ease 0.8ms;
     height: auto;
+    transition: all 0.5s ease;
 }
 
 header .imgieee {
-    height: 90px;
-    width: 110px;
+    max-height: 90px;
+    max-width: 90px;
+    aspect-ratio: 1/1;
     float: left;
+    transition: all 0.5s ease;
     /* Your logo image styling */
 }
 
 header .imgwie {
-    height: 90px;
-    width: 90px;
+    max-height: 90px;
+    max-width: 90px;
+    aspect-ratio: 1/1;
     float: right;
+    transition: all 0.5s ease;
     /* Your logo image styling */
 }
-
 /* Navbar styles */
 nav {
     padding: 10px;
+    transition: all 0.5s ease;
     /* Your navbar styling */
-}
+ }
+
+
 
 .links{
         display: flex;
@@ -261,20 +278,6 @@ nav a {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
 
-    header .imgieee {
-        height: 100px;
-        width: 100px;
-        float: left;
-        /* Your logo image styling */
-    }
-
-    header .imgwie {
-        height: 100px;
-        width: 100px;
-        float: right;
-        /* Your logo image styling */
-    }
-
     .hamburger {
         display: block;
         width: 30px;
@@ -291,7 +294,7 @@ nav a {
     }
 
     .hamburger.active .bar1 {
-        transform: rotate(-47deg) translate(-5px, 6px);
+        transform: rotate(-45deg) translate(-5px, 6px);
     }
 
     .hamburger.active .bar2 {
@@ -299,7 +302,7 @@ nav a {
     }
 
     .hamburger.active .bar3 {
-        transform: rotate(47deg) translate(-5px, -6px);
+        transform: rotate(45deg) translate(-5px, -6px);
     }
 
     nav ul {
@@ -470,9 +473,10 @@ body {
           background-size: cover;
           width: 600px;
           height: auto;
+          align-items: center;
           padding: 15px;
         }
-      
+        
         .swiper-slide img {
           display: block;
           width: 100%;

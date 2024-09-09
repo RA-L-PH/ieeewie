@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body></body>
+        <div id="additional-form" class="additional-form"></div>
+        <form method="POST" id="urlform">
+            <label for="github">URL 1:</label>
+            <input type="url" id="github" name="github" required>
+            <br>
+            <label for="htmlfile">URL 2:</label>
+            <input type="url" id="htmlfile" name="htmlfile" required>
+            <br>
+            <input type="submit" value="Submit URLs">
+        </form>
+    </div>
+    <script>
+        document.getElementById('urlform').addEventListener('submit', function(event) {
+            event.preventDefault();
+    
+            var github = document.getElementById('github').value;
+            var htmlfile = document.getElementById('htmlfile').value;
+    
+            var data = {
+                github: github,
+                htmlfile: htmlfile
+            };
+    
+            fetch('https://script.google.com/macros/s/AKfycbwHvitnEwJh-kJENwkBGL3_eKEitUTJ9FgDR342AEQhcpk43qrHlnlEvUS21KGtnVrldA/exec', {
+                method: 'POST',
+                mode:"no-cors",
+                body: JSON.stringify(data),
+                headers: {
+                    
+                    'Content-Type': 'application/json',
+                                        
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morphing Transition on Scroll</title>
+  <style>
+    body, html {
+      height: 200%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .morph-element {
+      width: 100px;
+      height: 100px;
+      background-color: blue;
+      transition: all 0.5s ease;
+      z-index: 1;
+    }
+
+    .morph-element.morphed {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+      border-radius: 40%;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 10px;
+      z-index: 2;
+      transition: all 0.5s ease;
+    }
+
+    header.morphed {
+      width: 60%;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header id="header">My Header</header>
+  <div class="container">
+    <div class="morph-element" id="morphElement"></div>
+  </div>
+  <script>
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      const scrollPosition = window.scrollY;
+
+      // Adjust the threshold as needed
+      const threshold = 100;
+
+      if (scrollPosition > threshold) {
+        header.classList.add('morphed');
+      } else {
+        header.classList.remove('morphed');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -2,6 +2,23 @@ document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
   });
 
+// Add this JavaScript to your script.js file
+document.querySelectorAll('nav a').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      const headerOffset = document.querySelector('header').offsetHeight;
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+  
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    });
+  });
+
 function toggleMenu() {
     var hamburger = document.querySelector('.hamburger');
     var menu = document.querySelector('nav ul'); // Add a closing parenthesis here
