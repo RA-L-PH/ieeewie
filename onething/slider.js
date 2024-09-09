@@ -44,7 +44,7 @@ async function imageSlide() {
     data.forEach(item => {
       slides.innerHTML += `
         <div class="swiper-slide">
-          <img src="${item.link}" alt="Slide Image" onclick="loadContent('${item.imgSrc}')"/>
+          <img src="${item.imgSrc}" alt="Slide Image" onclick="loadContent('${item.link}')"/>
         </div>
       `;
     });
