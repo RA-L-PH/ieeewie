@@ -88,14 +88,14 @@ function memberdefine(scriptrl){
     });
 
     if (ieeeHeadHtml !== '' || ieeeExecutiveHtml !== '') { // Check if there is at least one IEEE committee member
-        ieeeHtml += '<h2>IEEE</h2></br>';
+        ieeeHtml += '<h2><strong>IEEE</strong></h2></br>';
         ieeeHtml += '<div class="flexbox">' + ieeeHeadHtml + '</div>';
         ieeeHtml += '<div class="flexbox">' + ieeeExecutiveHtml + '</div>';
         html += ieeeHtml;
     }
 
     if (wieHeadHtml !== '' || wieExecutiveHtml !== '') { // Check if there is at least one WIE committee member
-        wieHtml += '<h2>WIE</h2></br>';
+        wieHtml += '<h2><strong>WIE</strong></h2></br>';
         wieHtml += '<div class="flexbox">' + wieHeadHtml + '</div>';
         wieHtml += '<div class="flexbox">' + wieExecutiveHtml + '</div>';
         html += wieHtml;
@@ -192,35 +192,38 @@ function openEventLetter() {
 const form = document.getElementById('eventletterform');
 
 // Add an event listener to the form submission
-form.addEventListener('submit', (e) => {
-  // Prevent the default form submission behavior
-  e.preventDefault();
+function submit() {
+    var email = document.getElementById('email').value;
+    var fname = document.getElementById('fname').value;
+    var lname = document.getElementById('lname').value;
+    console.log(email+lname+fname);
 
-  // Get the input values
-  const fullName = document.getElementById('fullname').value;
-  const email = document.getElementById('email').value;
+    if (email && fname && lname) {
+        var url = 'https://script.google.com/macros/s/AKfycbx4QCnFB4g91n-nj-s1CBuvYvSO4Ufg2WQ5NlfqKGZFaxNMryQj7B2OXCeqymiVNmmt/exec';
+        var data = {
+            'fname': fname,
+            'lname': lname,
+            'email': email,
+        };
+        
+        var params = {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        };
+        
+        fetch(url, params)
+            .then(response => {
+                closeEventLetter();
+            })
+    }
+}
 
-  // Validate the input values
-  if (fullName.trim() === '' || email.trim() === '') {
-    alert('Please fill in all fields.');
-    return;
-  }
+document.getElementById('submit-button').addEventListener('click', submit);
 
-  // Send the data to the server or handle it as needed
-  // For this example, we'll just log the data to the console
-  console.log('Form submitted:');
-  console.log('Full Name:', fullName);
-  console.log('Email:', email);
-
-  // Clear the form fields
-  document.getElementById('fullname').value = '';
-  document.getElementById('email').value = '';
-
-  // Close the event letter
-  closeEventLetter();
-});
-  // Show a success message
 function closeEventLetter() {
-    // Remove the show class from the event letter
-    eventLetter.classList.remove('show');
-  }
+  eventLetter.classList.remove('show');
+}

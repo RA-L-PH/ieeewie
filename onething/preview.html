@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventletter Preview</title>
+    <style>
+        /* Form styling */
+        .formless {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+
+        form {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        form label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        form input[type="text"],
+        form input[type="url"],
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        form input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        form button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+        form .radio-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        form .radio-group label {
+            margin-right: 20px;
+            font-weight: normal;
+        }
+
+
+        .parent-container {
+            display: flex;
+        }
+
+        #preview {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <div class="formless">
+        <form id="eventletterForm">
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" required><br><br>
+        
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required><br><br>
+        
+            <label for="body">Body:</label>
+            <textarea id="body" name="body" style="display: none;"></textarea><br><br>
+        
+            <label for="header-image">Header Image Link:</label>
+            <input type="url" id="header-image" name="header-image" required><br><br>
+        
+            <label for="registration-link">Registration Link:</label>
+            <input type="url" id="registration-link" name="registration-link" required><br><br>
+        
+            <label>Event Organized By:</label><br>
+            <input type="radio" id="ieee" name="organized-by" value="IEEE" required>
+            <label for="ieee">IEEE</label><br>
+            <input type="radio" id="wie" name="organized-by" value="WIE">
+            <label for="wie">WIE</label><br>
+            <input type="radio" id="both" name="organized-by" value="IEEE & WIE">
+            <label for="both">Both</label><br><br>
+        
+            <button type="button" id="preview-button" onclick="previewEventletter()">Preview</button>
+            <button type="submit" id="send-button" onclick="sendEventLetter()">Send Eventletter</button>
+        </form>
+    </div>
+    <div class="parent-container">
+        <div id="preview" class="preview"></div>
+    </div>
+        
+    
+    
+    
+    
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
+    <script>
+        let editorInstance;
+
+// Initialize the rich text editor
+        ClassicEditor
+            .create(document.querySelector('#body'))
+            .then(editor => {
+                editorInstance = editor;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        function previewEventletter() {
+            // Get form values
+            const subject = document.getElementById('subject').value;
+            const title = document.getElementById('title').value;
+            const body = editorInstance.getData();
+            const headerImage = document.getElementById('header-image').value;
+            const registrationLink = document.getElementById('registration-link').value;
+            const organizedBy = document.querySelector('input[name="organized-by"]:checked').value;
+
+            // Generate preview HTML
+            var previewHTML = `
+            <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #00003c;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        td {
+            text-align: center;
+            padding: 20px;
+            color: lavender;
+        }
+
+        .header {
+            background-color: #2e2e2e;
+            color: #B2AC88;
+        }
+
+        .content img {
+            width: 60vw;
+            height: auto;
+            border: lavender 2px solid;
+            border-radius: 10px;
+        }
+
+        .content a {
+            display: inline-block;
+            height: 25px;
+            padding: 5px;
+            width: 200px;
+            border-radius: 15px;
+            background-color: skyblue;
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer {
+            background-color: #2e2e2e;
+            color: #B2AC88;
+            padding: 10px;
+        }
+
+        .footer a {
+            color: lavender;
+            text-decoration: none;
+        }
+    </style>
+    <table>
+        <!-- Header Row -->
+        <tr>
+            <td class="header">
+                <h1>${title}</h1>
+                <p>Organized by ${organizedBy}</p>
+            </td>
+        </tr>
+
+        <!-- Image Row -->
+        <tr class="content">
+            <td>
+                <img src="${headerImage}" alt="Header Image">
+            </td>
+        </tr>
+
+        <!-- Body Content Row -->
+        <tr class="content">
+            <td>
+                <p>${body}</p>
+                <a href="${registrationLink}">Register Now</a>
+            </td>
+        </tr>
+
+        <!-- Footer Row -->
+        <tr>
+            <td class="footer">
+                <a href="https://issb.sfit.ac.in">Visit IEEE | WIE</a>
+            </td>
+        </tr>
+    </table>
+                
+            `;
+
+            // Insert the generated HTML into the preview element
+            document.getElementById('preview').innerHTML = previewHTML;
+            document.getElementById('preview').style.display = 'block';
+        }
+        
+        function sendEventLetter() {
+            const subject = document.getElementById('subject').value;
+            const title = document.getElementById('title').value;
+            const body = editorInstance.getData();
+            const headerImage = document.getElementById('header-image').value;
+            const registrationLink = document.getElementById('registration-link').value;
+            const organizedBy = document.querySelector('input[name="organized-by"]:checked').value;
+
+            if (subject || title || body || headerImage || registrationLink || organizedBy) {
+                var url = 'https://script.google.com/macros/s/AKfycbxNjuLsYItsHPzTYtC-wQ07RCRAkpuFEhCYihJ0PWFTmC8E4EbvGbZBltd2FjoOnJkJmg/exec';
+                var data = {
+                    "subject" : subject,
+                    "title" : title,
+                    "body" : body,
+                    "headerImage" : headerImage,
+                    "registrationLink" : registrationLink,
+                    "organizedBy" : organizedBy
+                };
+                
+                var params = {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                    'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                };
+                
+                fetch(url, params)
+                    .then(response => {
+                        closeEventLetter();
+                    })
+            }
+        
+    }
+</script>
+</body>
+</html>
