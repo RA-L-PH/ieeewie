@@ -71,7 +71,6 @@
             font-weight: normal;
         }
 
-
         .parent-container {
             display: flex;
         }
@@ -110,22 +109,18 @@
             <label for="both">Both</label><br><br>
         
             <button type="button" id="preview-button" onclick="previewEventletter()">Preview</button>
-            <button type="submit" id="send-button" onclick="sendEventLetter()">Send Eventletter</button>
+            <button type="submit">Send EventLetter</button>
         </form>
     </div>
     <div class="parent-container">
         <div id="preview" class="preview"></div>
     </div>
-        
-    
-    
-    
-    
+
     <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
     <script>
         let editorInstance;
 
-// Initialize the rich text editor
+        // Initialize the rich text editor
         ClassicEditor
             .create(document.querySelector('#body'))
             .then(editor => {
@@ -145,130 +140,121 @@
             const organizedBy = document.querySelector('input[name="organized-by"]:checked').value;
 
             // Generate preview HTML
-            var previewHTML = `
+            const previewHTML = `
             <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #00003c;
-            border-radius: 10px;
-            overflow: hidden;
-        }
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    background-color: #00003c;
+                    border-radius: 10px;
+                    overflow: hidden;
+                }
 
-        td {
-            text-align: center;
-            padding: 20px;
-            color: lavender;
-        }
+                td {
+                    text-align: center;
+                    padding: 20px;
+                    color: lavender;
+                }
 
-        .header {
-            background-color: #2e2e2e;
-            color: #B2AC88;
-        }
+                .header {
+                    background-color: #2e2e2e;
+                    color: #B2AC88;
+                }
 
-        .content img {
-            width: 60vw;
-            height: auto;
-            border: lavender 2px solid;
-            border-radius: 10px;
-        }
+                .content img {
+                    width: 60vw;
+                    height: auto;
+                    border: lavender 2px solid;
+                    border-radius: 10px;
+                }
 
-        .content a {
-            display: inline-block;
-            height: 25px;
-            padding: 5px;
-            width: 200px;
-            border-radius: 15px;
-            background-color: skyblue;
-            color: white;
-            text-decoration: none;
-        }
+                .content a {
+                    display: inline-block;
+                    height: 25px;
+                    padding: 5px;
+                    width: 200px;
+                    border-radius: 15px;
+                    background-color: skyblue;
+                    color: white;
+                    text-decoration: none;
+                }
 
-        .footer {
-            background-color: #2e2e2e;
-            color: #B2AC88;
-            padding: 10px;
-        }
+                .footer {
+                    background-color: #2e2e2e;
+                    color: #B2AC88;
+                    padding: 10px;
+                }
 
-        .footer a {
-            color: lavender;
-            text-decoration: none;
-        }
-    </style>
-    <table>
-        <!-- Header Row -->
-        <tr>
-            <td class="header">
-                <h1>${title}</h1>
-                <p>Organized by ${organizedBy}</p>
-            </td>
-        </tr>
+                .footer a {
+                    color: lavender;
+                    text-decoration: none;
+                }
+            </style>
+            <table>
+                <!-- Header Row -->
+                <tr>
+                    <td class="header">
+                        <h1>${title}</h1>
+                        <p>Organized by ${organizedBy}</p>
+                    </td>
+                </tr>
 
-        <!-- Image Row -->
-        <tr class="content">
-            <td>
-                <img src="${headerImage}" alt="Header Image">
-            </td>
-        </tr>
+                <!-- Image Row -->
+                <tr class="content">
+                    <td>
+                        <img src="${headerImage}" alt="Header Image">
+                    </td>
+                </tr>
 
-        <!-- Body Content Row -->
-        <tr class="content">
-            <td>
-                <p>${body}</p>
-                <a href="${registrationLink}">Register Now</a>
-            </td>
-        </tr>
+                <!-- Body Content Row -->
+                <tr class="content">
+                    <td>
+                        <p>${body}</p>
+                        <a href="${registrationLink}">Register Now</a>
+                    </td>
+                </tr>
 
-        <!-- Footer Row -->
-        <tr>
-            <td class="footer">
-                <a href="https://issb.sfit.ac.in">Visit IEEE | WIE</a>
-            </td>
-        </tr>
-    </table>
-                
+                <!-- Footer Row -->
+                <tr>
+                    <td class="footer">
+                        <a href="https://issb.sfit.ac.in">Visit IEEE | WIE</a>
+                    </td>
+                </tr>
+            </table>
             `;
 
             // Insert the generated HTML into the preview element
             document.getElementById('preview').innerHTML = previewHTML;
             document.getElementById('preview').style.display = 'block';
         }
-        
-        function sendEventLetter() {
-            const subject = document.getElementById('subject').value;
-            const title = document.getElementById('title').value;
-            const body = editorInstance.getData();
-            const headerImage = document.getElementById('header-image').value;
-            const registrationLink = document.getElementById('registration-link').value;
-            const organizedBy = document.querySelector('input[name="organized-by"]:checked').value;
 
-            if (subject || title || body || headerImage || registrationLink || organizedBy) {
-                var url = 'https://script.google.com/macros/s/AKfycbxNjuLsYItsHPzTYtC-wQ07RCRAkpuFEhCYihJ0PWFTmC8E4EbvGbZBltd2FjoOnJkJmg/exec';
-                var data = {
-                    "subject" : subject,
-                    "title" : title,
-                    "body" : body,
-                    "headerImage" : headerImage,
-                    "registrationLink" : registrationLink,
-                    "organizedBy" : organizedBy
-                };
-                
-                var params = {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
+        document.getElementById('eventletterForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            var form = document.getElementById('eventletterForm');
+            var formData = new FormData(form);
+            var jsonData = {};
+
+            formData.forEach((value, key) => {
+                jsonData[key] = value;
+            });
+
+            fetch('https://script.google.com/macros/s/AKfycbyusdFvCSLsbEcm9UWugUaNoPS2Z9KdAuaBlzDrw2yDyNwaIra7F-7VGp1nEjr42aNu4g/exec', {
+                method: 'POST',
+                headers: {
                     'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                };
-                
-                fetch(url, params)
-                    .then(response => {
-                        closeEventLetter();
-                    })
-            }
-        
-    }
-</script>
+                },
+                mode: 'no-cors',
+                body: JSON.stringify(jsonData)
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data); // Handle the response from GAS
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
 </body>
 </html>
