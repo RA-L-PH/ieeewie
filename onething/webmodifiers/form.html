@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        img {
+            height: 200px;
+            width: 200px;
+            margin: 10px;
+            display: none;
+        }
+        input[type="text"],
+        select,
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Join Our Team</h2>
+        <label for="photo">Your Photo:<br> Image should be maximum 350kb in size and dimesions should be 1:1(square)</label>
+            <input type="file" id="image_input" accept="image/jpeg,image/png" required />
+            <button id="upload-button">Upload Image</button><br>
+            <span id="message"></span>
+            <br><br>
+        <form method="POST" enctype="multipart/form-data" id="memberform">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label>Commitee:</label>
+            <input type="radio" id="ieee" name="commitee" value="IEEE" required>
+            <label for="ieee">IEEE</label>
+            <input type="radio" id="wie" name="commitee" value="WIE">
+            <label for="wie">WIE</label>
+            <br>
+
+            <label for="branch">Branch:</label>
+            <select id="branch" name="branch" required>
+                <option value="">Select your Branch</option>
+                <option value="Convenor">Convenor</option>
+                <option value="Core">Core</option>
+                <option value="Technical">Technical</option>
+                <option value="PR">PR</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Social Media">Social Media</option>
+                <!-- Add more options as needed -->
+            </select>
+
+            <label for="role">Role:</label>
+            <select id="role" name="role" required>
+                <option value="">Select your Role</option>
+                <option value="Convenor">Convenor</option>
+                <option value="Chairperson">Chairperson</option>
+                <option value="Vice-Chairperson">Vice-Chairperson</option>
+                <option value="General Secretary">General Secretary</option>
+                <option value="Treasurer">Treasurer</option>
+                <option value="WebMaster">WebMaster</option>
+                <option value="Head">Head</option>
+                <option value="Vice-Head">Vice-Head</option>
+                <option value="Executive">Executive</option>
+                <!-- Add more options as needed -->
+            </select>
+
+
+            <label for="linkedin">LinkedIn Profile Link:</label>
+            <input type="url" id="linkedin" name="linkedin" required>
+        </br></br>
+            
+            <label for="img-url">Image URL: </label>
+            <input type="url" id="img-url" name="img-url" value="" readonly>
+            <br><br>
+
+            <button type="submit">Submit</button>
+            <span id="submitted"></span>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
+    <script>
+        const cloudName = "duzpey9vu"; // replace with your own cloud name
+        const uploadPreset = "ml_default"; // replace with your own upload preset
+
+        const imageInput = document.getElementById("image_input");
+        const button = document.getElementById("upload-button");
+        const imgUrlInput = document.getElementById("img-url"); // added this line
+        const form = document.querySelector("form"); // get the form element
+        const uploadedImage = document.getElementById("uploadedimage");
+
+        // Set the maximum file size and dimensions
+        const MAX_FILE_SIZE = 350 * 1024; // 350KB
+        const MAX_WIDTH = 500;
+        const MAX_HEIGHT = 500;
+
+        function uploadImage(event) {
+            event.preventDefault(); // add this line to prevent default form submission
+            const image = imageInput.files[0];
+
+            // Check if an image is already uploaded
+            if (imgUrlInput.value !== "") {
+                alert("You can only upload one image.");
+                return;
+            }
+
+            // Check the file size
+            if (image.size > MAX_FILE_SIZE) {
+                alert("The image size exceeds the maximum limit of 350KB.");
+                return;
+            }
+
+            // Check the image dimensions
+            const img = new Image();
+            img.src = URL.createObjectURL(image);
+            img.onload = function() {
+                if (img.width !== img.height) {
+                    alert("The image aspect ratio must be 1:1 (square).");
+                    return;
+                }
+
+                // Upload the image to Cloudinary
+                const formData = new FormData();
+                formData.append("file", image, image.name);
+                formData.append("upload_preset", uploadPreset);
+                formData.append("cloud_name", cloudName);
+
+                // Set the API URL to your Cloudinary upload endpoint
+                const apiUrl = "https://api.cloudinary.com/v1_1/" + cloudName + "/upload";
+
+                fetch(apiUrl, {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.secure_url) {
+                        console.log("Image uploaded successfully!");
+                        var msg = document.getElementById("message");
+                        msg.innerHTML = "Image uploaded successfully!";
+                        imgUrlInput.value = result.secure_url; // added this line to populate the img-url input box
+
+                        // Return image URL within 2 seconds
+                        setTimeout(function() {
+                            imgUrlInput.value = result.secure_url;
+                        }, 2000); // 2000ms = 2 seconds
+                    } else {
+                        console.error("Error uploading image:", result);
+                    }
+                })
+                .catch(error => console.error("Error uploading image:", error));
+            };
+        }
+
+        // Get the form element
+
+
+        // Add an event listener to the form submission
+        form.addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission behavior
+            
+            // Get the form data
+            var form = document.getElementById("memberform");
+            var formData = new FormData(form);
+            
+            // Send the form data to the GAS script using the doPost function
+            var scriptURL = "https://script.google.com/macros/s/AKfycbx8Mt5JENsVBRPqsAOzSG0yGXz7hP4fpQMPWEv5JjPjuYK-Qlioo8HyuJoFlf7Y407fxA/exec"; // Replace with your GAS script URL
+            fetch(scriptURL, {
+                mode: "no-cors",
+                method: "POST",
+                body: formData
+            })
+            .then(function(response) {
+                console.log(response);
+                sub = document.getElementById("submitted");
+                sub.innerHTML = "Form submitted successfully!";
+                form.reset();
+            })
+            .catch(function(error) {
+                console.error(error);
+            });
+            
+        }); 
+
+        button.addEventListener("click", uploadImage);
+    </script>
+</body>
+</html>

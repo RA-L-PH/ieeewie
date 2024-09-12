@@ -35,7 +35,8 @@ function closemenu() {
     menu.classList.remove('menu');
 }
 
-function memberdefine(scriptrl){
+function memberdefine(branch) {
+    var scriptrl = `https://script.google.com/macros/s/AKfycbxzw46iwB5aGXK2ZesvQ7wAU6-UVzswe4qFKs11C-V2FhDyuzUQcNZwa9cYoSHxt95Vxw/exec?branch=${branch}`;
     var team = document.getElementById("team");
     team.innerHTML = `<div class="loader">
                         </div>`;
@@ -108,7 +109,7 @@ function memberdefine(scriptrl){
 
 
 function convenors(){
-    let imp = 'https://script.google.com/macros/s/AKfycbxjEERH1amYhaoyI6dUyQL9s_3sN46He37dqjGwEEEUa1dFRU0DSMjLIk-ohPudQYW3Rg/exec';
+    let imp = 'Convenor';
     memberdefine(imp);
 
     var buttons = document.querySelectorAll('.branch button');
@@ -122,7 +123,7 @@ function convenors(){
 convenors()
 
 function core(){
-    var imp = 'https://script.google.com/macros/s/AKfycbzi3tlokjFhOFz6TlK5N5f_UOP5sH5GNp2-BWJPKCnkuoJOd7BxseGu0yjgiJi33_tQ5w/exec';
+    var imp = 'Core';
     memberdefine(imp);
 
     var buttons = document.querySelectorAll('.branch button');
@@ -135,7 +136,7 @@ function core(){
 }
 
 function technical(){
-    var imp = 'https://script.google.com/macros/s/AKfycbzbgPvEs5pwDssniPugXqKMtoarZ4pyF4lKE5vJ-cHChDuaGkARbejlH-C4suLycv9z1g/exec';
+    var imp = 'Technical';
     memberdefine(imp);
 
     var buttons = document.querySelectorAll('.branch button');
@@ -147,7 +148,7 @@ function technical(){
 }
 
 function pr(){
-    var imp = 'https://script.google.com/macros/s/AKfycbyJDIkDmOVRcdgFFDNcx68fnSXfkYlb3LdhelsM78gVwZODYx1NZWGisQhaz9EmVk_vwQ/exec';
+    var imp = 'PR';
     memberdefine(imp);
 
     var buttons = document.querySelectorAll('.branch button');
@@ -159,7 +160,7 @@ function pr(){
 }
 
 function marketing(){
-    var imp = 'https://script.google.com/macros/s/AKfycbzQEMalW1PJt1FbTi4zHsfgYS4qgapzN00UbG97quHw_1qI1ko6VPDKTLgduKX-pfOMug/exec';
+    var imp = 'Marketing';
     memberdefine(imp);
 
     var buttons = document.querySelectorAll('.branch button');
@@ -171,7 +172,7 @@ function marketing(){
 }
 
 function socialmedia(){
-    var imp = 'https://script.google.com/macros/s/AKfycbxq4MP6q1oes1qF_1r6lPdk9U7CfTvDYqAowOjpjZqLAwVumclGnI0hoK1fI2kCI2_fiQ/exec';
+    var imp = 'Social Media';
     memberdefine(imp);
 
     var buttons = document.querySelectorAll('.branch button');
