@@ -70,7 +70,7 @@ function memberdefine(branch) {
                 <img src="${item.image}">
                 <h3>${item.name}</h3>
                 <p>${item.role}</p>
-                <a class="fa-brands fa-linkedin" href="${item.linkedin}"></a>
+                <a class="fa-brands fa-linkedin" style="padding:3px;" href="${item.linkedin}"></a>
             </div>`
             if(item.committee === "IEEE"){
                 if (item.role === 'Head' || item.role === 'Vice-Head' || item.role === 'Chairperson' || item.role === 'Vice-Chairperson' || item.role === 'Convenor') {
