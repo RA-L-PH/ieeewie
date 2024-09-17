@@ -2,6 +2,8 @@ document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
   });
 
+
+
 // Add this JavaScript to your script.js file
 document.querySelectorAll('nav a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
