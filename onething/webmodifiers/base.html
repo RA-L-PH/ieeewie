@@ -3,20 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Event Slider</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #additional-form {
+            margin-bottom: 20px;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="url"] {
+            width: 95%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
-<body></body>
-        <div id="additional-form" class="additional-form"></div>
-        <form method="POST" id="urlform">
-            <label for="github">image url:</label>
-            <input type="url" id="github" name="github" required>
-            <br>
-            <label for="htmlfile">raw html url:</label>
-            <input type="url" id="htmlfile" name="htmlfile" required>
-            <br>
-            <input type="submit" value="Submit URLs">
-        </form>
-    </div>
+<body>
+    <div id="additional-form" class="additional-form"></div>
+    <form method="POST" id="urlform">
+        <label for="github">Image URL:</label>
+        <input type="url" id="github" name="github" required>
+        <br>
+        <label for="htmlfile">Raw HTML URL:</label>
+        <input type="url" id="htmlfile" name="htmlfile" required>
+        <br>
+        <input type="submit" value="Submit URLs">
+    </form>
     <script>
         document.getElementById('urlform').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -31,12 +76,10 @@
     
             fetch('https://script.google.com/macros/s/AKfycbzmuZr1CH5_NuNu00krWZICupA0ttXjk4zmyTZgHR919gqWbZeppz37509Z2KUaJIkG4Q/exec', {
                 method: 'POST',
-                mode:"no-cors",
+                mode: "no-cors",
                 body: JSON.stringify(data),
                 headers: {
-                    
                     'Content-Type': 'application/json',
-                                        
                 }
             })
             .then(response => response.json())
