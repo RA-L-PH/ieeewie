@@ -19,7 +19,7 @@ var swiper = new Swiper(".mySwiper", {
 
 async function fetchData() {
   try {
-    const response = await fetch('https://script.google.com/macros/s/AKfycbxhGlJg8M0ZNSFE251MUAcbgpowaPYCWMOfU4PX14Tm4uovCn4vMYVJ-OLODp8TLqbjow/exec');
+    const response = await fetch('https://script.google.com/macros/s/AKfycbyLJS4FYjYFtoCi0YDx4RnrdWeYp0o_Td1kxYfmT295dXceIQL8L7xOCuAxbnR51GAMTw/exec');
     const data = await response.json();
     return data;
   } catch (error) {

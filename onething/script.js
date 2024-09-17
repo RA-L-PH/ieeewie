@@ -36,7 +36,7 @@ function closemenu() {
 }
 
 function memberdefine(branch) {
-    var scriptrl = `https://script.google.com/macros/s/AKfycbxzw46iwB5aGXK2ZesvQ7wAU6-UVzswe4qFKs11C-V2FhDyuzUQcNZwa9cYoSHxt95Vxw/exec?branch=${branch}`;
+    var scriptrl = `https://script.google.com/macros/s/AKfycbx9krwAXXb4WXGbAUSpF1JTM4c6_ScctoMIIdxPvI08HioMAePVjcUAs7uMgIEH83atpA/exec?branch=${branch}`;
     var team = document.getElementById("team");
     team.innerHTML = `<div class="loader">
                         </div>`;
@@ -200,7 +200,7 @@ function submit() {
     console.log(email+lname+fname);
 
     if (email && fname && lname) {
-        var url = 'https://script.google.com/macros/s/AKfycbx4QCnFB4g91n-nj-s1CBuvYvSO4Ufg2WQ5NlfqKGZFaxNMryQj7B2OXCeqymiVNmmt/exec';
+        var url = 'https://script.google.com/macros/s/AKfycbwzJx6DN96S9o7k-75J5zkoepQkObGEdIqassOjZ9382XNVwt1DUnglVIY5vjUlxiJj/exec';
         var data = {
             'fname': fname,
             'lname': lname,
