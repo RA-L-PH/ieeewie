@@ -47,7 +47,7 @@ function memberdefine(branch) {
     .then(data => {
         var team = document.getElementById("team");
         const sortedData = data.sort((a, b) => {
-            const roleOrder = ['Convenor','Chairperson','Vice-Chairperson','General Secretary','Treasurer','WebMaster','Head', 'Vice-Head', 'Executive'];
+            const roleOrder = ['Convenor','Co-Convenor', 'Chairperson','Vice-Chairperson','General Secretary','Treasurer','WebMaster','Head', 'Vice-Head', 'Executive'];
             return roleOrder.indexOf(a.role) - roleOrder.indexOf(b.role);
         });
 
@@ -73,14 +73,14 @@ function memberdefine(branch) {
                 <a class="fa-brands fa-linkedin" style="padding:3px;" href="${item.linkedin}"></a>
             </div>`
             if(item.committee === "IEEE"){
-                if (item.role === 'Head' || item.role === 'Vice-Head' || item.role === 'Chairperson' || item.role === 'Vice-Chairperson' || item.role === 'Convenor') {
+                if (item.role === 'Head' || item.role === 'Vice-Head' || item.role === 'Chairperson' || item.role === 'Vice-Chairperson' || item.role === 'Convenor' || item.role === 'Co-Convenor') {
                     ieeeHeadHtml += cardHtml; // Append the HTML string to the ieeeHeadHtml variable
                 } else if (item.role === 'Executive' || item.role === 'General Secretary' || item.role === 'Treasurer' || item.role === 'WebMaster') {
                     ieeeExecutiveHtml += cardHtml; // Append the HTML string to the ieeeExecutiveHtml variable
                 }
             }
             else if(item.committee === "WIE"){
-                if (item.role === 'Head' || item.role === 'Vice-Head' || item.role === 'Chairperson' || item.role === 'Vice-Chairperson' || item.role === 'Convenor') {
+                if (item.role === 'Head' || item.role === 'Vice-Head' || item.role === 'Chairperson' || item.role === 'Vice-Chairperson' || item.role === 'Convenor' || item.role === 'Co-Convenor') {
                     wieHeadHtml += cardHtml; // Append the HTML string to the wieHeadHtml variable
                 } else if (item.role === 'Executive' || item.role === 'General Secretary' || item.role === 'Treasurer' || item.role === 'WebMaster') {
                     wieExecutiveHtml += cardHtml; // Append the HTML string to the wieExecutiveHtml variable
@@ -183,6 +183,19 @@ function socialmedia(){
     }
     var button = document.querySelector('.branch button:nth-child(6)');
     button.classList.add('active');
+}
+
+function creative(){
+    var imp = 'Creative';
+    memberdefine(imp);
+
+    var buttons = document.querySelectorAll('.branch button');
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove('active');
+    }
+    var button = document.querySelector('.branch button:nth-child(7)');
+    button.classList.add('active');
+
 }
 
 const eventLetter = document.getElementById("eventletter");
