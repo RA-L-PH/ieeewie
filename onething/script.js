@@ -21,6 +21,14 @@ document.querySelectorAll('nav a').forEach(anchor => {
     });
   });
 
+  function learn(){
+    window.location.href = "learn.html";
+  }
+
+  function blog(){
+    window.location.href = "blog.html";
+  }
+
 function toggleMenu() {
     var hamburger = document.querySelector('.hamburger');
     var menu = document.querySelector('nav ul'); // Add a closing parenthesis here

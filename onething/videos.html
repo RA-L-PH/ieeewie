@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" id="content">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  
+  <script>
+    document.addEventListener('contextmenu', function(event) {
+        event.preventDefault();
+    });
+    document.addEventListener("DOMContentLoaded", function() {
+      // Retrieve the rawLink from localStorage
+      const rawLink = localStorage.getItem('rawLink');
+
+      if (rawLink) {
+        // Fetch the content from the raw HTML link
+        fetch(rawLink)
+          .then(response => response.text())
+          .then(data => {
+            // Insert the fetched content into the div
+            document.getElementById('content').innerHTML = data;
+
+            // Evaluate any script tags in the fetched content
+            const scripts = document.getElementById('content').getElementsByTagName('script');
+            for (let script of scripts) {
+              eval(script.innerHTML);
+            }
+          })
+          .catch(error => {
+            console.error('Error fetching the content:', error);
+            document.getElementById('content').innerHTML = '<p>Failed to load content.</p>';
+          });
+      } else {
+        document.getElementById('content').innerHTML = '<p>No content to display.</p>';
+      }
+    });
+  </script>
+</body>
+</html>
