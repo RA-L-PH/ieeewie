@@ -29,7 +29,7 @@ fetch(scriptUrl)
           <div class="des">
             <h2>${item.title}</h2>
             <p>${item.des}</p>
-            <button onclick="loadvids('${item.learnpage}')">Learn more...</button>
+            <a href="#" onclick="loadvids('${item.learnpage}')">Learn more...</a>
           </div>
         </section>
       `;
