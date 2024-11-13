@@ -1,37 +1,34 @@
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
-  });
+});
 
-
-
-// Add this JavaScript to your script.js file
 document.querySelectorAll('nav a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const targetId = this.getAttribute('href').substring(1);
-      const targetElement = document.getElementById(targetId);
-      const headerOffset = document.querySelector('header').offsetHeight;
-      const elementPosition = targetElement.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - headerOffset;
-  
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        const headerOffset = document.querySelector('header').offsetHeight;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
     });
-  });
+});
 
-  function learn(){
+function learn() {
     window.location.href = "learn.html";
-  }
+}
 
-  function blog(){
+function blog() {
     window.location.href = "blog.html";
-  }
+}
 
 function toggleMenu() {
     var hamburger = document.querySelector('.hamburger');
-    var menu = document.querySelector('nav ul'); // Add a closing parenthesis here
+    var menu = document.querySelector('nav ul');
 
     hamburger.classList.toggle('active');
     menu.classList.toggle('menu');
@@ -39,11 +36,53 @@ function toggleMenu() {
 
 function closemenu() {
     var hamburger = document.querySelector('.hamburger');
-    var menu = document.querySelector('nav ul'); // Add a closing parenthesis here
-
-    hamburger.classList.toggle('active');
-    menu.classList.remove('menu');
+    var menu = document.querySelector('nav ul');
 }
+
+// Popup functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Create the popup element
+    const popup = document.createElement('div');
+    popup.id = 'popup';
+
+    // Create the close button container
+    const closeButtonContainer = document.createElement('div');
+    closeButtonContainer.style.width = '100%';
+
+    // Create the close button
+    const closeButton = document.createElement('button');
+    closeButton.innerHTML = `<i class="fas fa-times"></i>`;
+    closeButtonContainer.appendChild(closeButton);
+
+    // Create the content container
+    const popupContentContainer = document.createElement('div');
+    popupContentContainer.style.width = '100%';
+
+    // Create content for the popup
+    const popupContent = document.createElement('div');
+    popupContent.innerHTML = `
+        <img src="assets/imagefinal.jpg" alt="SFIT Logo">
+        <h1>SFIT: A Name Synonymous with Excellence in Education</h1>
+        <p>SFIT has come a long way from its modest inception to the grand celebration of its silver jubilee. The journey of this prestigious institution is a testament to its vision, dedication, and unwavering commitment to fostering academic growth and holistic development.</p>
+        <p>Join us as we commemorate our journey and take pride in its countless achievements, transformative educational experiences, and the impact it has had on the lives of its students and the community.</p>
+    `;
+    popupContentContainer.appendChild(popupContent);
+
+    // Append the close button container and content container to the popup
+    popup.appendChild(closeButtonContainer);
+    popup.appendChild(popupContentContainer);
+
+    // Append the popup to the body
+    document.body.appendChild(popup);
+
+    // Display the popup
+    popup.style.display = 'block';
+
+    // Add event listener to the close button to hide the popup
+    closeButton.addEventListener('click', function() {
+        popup.style.display = 'none';
+    });
+});
 
 function memberdefine(branch) {
     var scriptrl = `https://script.google.com/macros/s/AKfycbx9krwAXXb4WXGbAUSpF1JTM4c6_ScctoMIIdxPvI08HioMAePVjcUAs7uMgIEH83atpA/exec?branch=${branch}`;
